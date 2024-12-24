@@ -1,5 +1,5 @@
 import { Document, Page } from 'react-pdf'; // Importing components from react-pdf
-import { FaUser, FaHeadset } from 'react-icons/fa'; // Importing icons from react-icons
+import Avatar from './ChatAvatar'; // Importing the new Avatar component
 import { useState } from 'react';
 import propTypes from 'prop-types';
 
@@ -58,33 +58,11 @@ const ChatBubble = ({ message, sender, time, status }) => {
     }
   };
 
-  // Function to render the avatar based on the sender
-  const renderAvatar = (sender) => {
-    if (sender === 'customer@mail.com') {
-      return (
-        <div className="w-12 h-12 rounded-full bg-blue-300 flex items-center justify-center">
-          <FaUser className="text-white text-2xl" />
-        </div>
-      );
-    } else if (sender === 'agent@mail.com') {
-      return (
-        <div className="w-12 h-12 rounded-full bg-green-300 flex items-center justify-center">
-          <FaHeadset className="text-white text-2xl" />
-        </div>
-      );
-    }
-    return (
-      <div className="w-12 h-12 rounded-full bg-gray-300 flex items-center justify-center">
-        <FaUser className="text-white text-2xl" />
-      </div>
-    );
-  };
-
   return (
     <div className={`chat ${sender === 'customer@mail.com' ? 'chat-start' : 'chat-end'}`}>
       {/* Avatar */}
       <div className="chat-image avatar">
-        {renderAvatar(sender)}
+        <Avatar sender={sender} />
       </div>
 
       {/* Message Header */}
@@ -94,7 +72,15 @@ const ChatBubble = ({ message, sender, time, status }) => {
       </div>
 
       {/* Message Bubble */}
-      <div className="chat-bubble">{renderMessageContent(message)}</div>
+      <div
+        className={`chat-bubble ${
+          sender === 'agent@mail.com'
+            ? 'bg-blue-500 text-white shadow-md'
+            : 'bg-white text-black shadow-md'
+        }`}
+      >
+        {renderMessageContent(message)}
+      </div>
 
       {/* Message Footer */}
       <div className="chat-footer opacity-50">{status}</div>
