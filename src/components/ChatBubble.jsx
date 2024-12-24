@@ -61,7 +61,7 @@ const ChatBubble = ({ message, sender }) => {
       </div>
 
       {/* Message Footer - No status, just keep the footer visible */}
-      <div className="chat-footer opacity-50 mb-20">
+      <div className="chat-footer opacity-50">
         {/* Footer content can be added here if needed in the future */}
       </div>
     </div>
