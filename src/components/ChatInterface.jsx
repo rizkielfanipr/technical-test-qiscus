@@ -60,7 +60,7 @@ const ChatInterface = () => {
   };
 
   return (
-    <div className="flex flex-col p-4 min-h-screen bg-gradient-to-r from-white via-blue-200 to-blue-80"> {/* Tailwind gradient class */}
+    <div className="flex flex-col min-h-screen bg-gradient-to-r from-white via-blue-200 to-blue-80"> {/* Tailwind gradient class */}
       {loading ? (
         <p className="text-black">Loading chat data...</p> // Menampilkan loading jika data sedang di-fetch
       ) : room ? (
