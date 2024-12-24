@@ -29,7 +29,7 @@ const ChatBubble = ({ message, sender }) => {
           <iframe
             src={message.message}
             width="100%"
-            height="500px"
+            height="350px"
             title="PDF Viewer"
             className="border-none rounded-md"
           />
