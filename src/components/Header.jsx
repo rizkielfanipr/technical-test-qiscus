@@ -15,7 +15,7 @@ const Header = ({ room, openModal }) => {
           {/* Room name and ID */}
           <div className="ml-4">
             <h1 className="text-xl text-[#03346E] font-semibold">{room.name}</h1>
-            <p className="text-sm text-gray-500">{String(room.id)}</p> {/* ID below the name, convert number to string */}
+            <p className="text-sm text-gray-500">{String(room.id)}</p> {/* ID */}
           </div>
         </div>
 
@@ -29,7 +29,7 @@ const Header = ({ room, openModal }) => {
                     {/* Render participant's avatar or initials */}
                     <div className="w-full h-full rounded-full bg-gray-300 flex items-center justify-center">
                       <span className="text-white font-semibold">
-                        {participant.name[0]}
+                        {participant.name[0]} {/* Menampilkan inisial peserta */}
                       </span>
                     </div>
                   </div>
@@ -46,12 +46,12 @@ const Header = ({ room, openModal }) => {
 Header.propTypes = {
   room: PropTypes.shape({
     name: PropTypes.string.isRequired,
-    id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired, // Allow either string or number
+    id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired, // ID ruangan
     image_url: PropTypes.string.isRequired,
     participant: PropTypes.arrayOf(
       PropTypes.shape({
         name: PropTypes.string.isRequired,
-        email: PropTypes.string.isRequired,
+        // Hapus bagian email karena tidak diperlukan lagi
       })
     ).isRequired,
   }).isRequired,

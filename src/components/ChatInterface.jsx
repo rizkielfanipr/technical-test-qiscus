@@ -53,17 +53,22 @@ const ChatInterface = () => {
       sender: 'customer@mail.com', // Assuming the sender is the customer
       message: message,
       type: 'text',
+      time: new Date().toLocaleTimeString(), // Menambahkan waktu
+      status: 'Delivered', // Menambahkan status
     };
     setComments([...comments, newMessage]); // Menambahkan pesan ke komentar
   };
 
   return (
-    <div className="flex flex-col p-4 h-screen">
+    <div className="flex flex-col p-4 min-h-screen bg-gradient-to-r from-white via-blue-200 to-blue-80"> {/* Tailwind gradient class */}
       {loading ? (
-        <p>Loading chat data...</p> // Menampilkan loading jika data sedang di-fetch
+        <p className="text-black">Loading chat data...</p> // Menampilkan loading jika data sedang di-fetch
       ) : room ? (
         <>
-          <Header room={room} openModal={openModal} />
+          <Header
+            room={room}
+            openModal={openModal}
+          />
 
           <Modal
             isModalOpen={isModalOpen}
@@ -72,14 +77,18 @@ const ChatInterface = () => {
           />
 
           {/* Main Content */}
-          <div className="mt-24 p-6">
+          <div className="mt-24 p-6 flex-1 overflow-hidden"> {/* Ensure the content is inside a flex container */}
             {/* Comments Section */}
             <div className="flex-1 overflow-auto space-y-4">
               {comments.length === 0 ? (
-                <p>No messages available</p> // Menampilkan jika tidak ada komentar
+                <p className="text-black">No messages available</p> // Menampilkan jika tidak ada komentar
               ) : (
                 comments.map((msg) => (
-                  <ChatBubble key={msg.id} message={msg} sender={msg.sender} /> // Render ChatBubble
+                  <ChatBubble
+                    key={msg.id}
+                    message={msg}
+                    sender={msg.sender}
+                  />
                 ))
               )}
             </div>
@@ -89,7 +98,7 @@ const ChatInterface = () => {
           </div>
         </>
       ) : (
-        <p>No room data available</p> // Menampilkan jika tidak ada data room
+        <p className="text-black">No room data available</p> // Menampilkan jika tidak ada data room
       )}
     </div>
   );
