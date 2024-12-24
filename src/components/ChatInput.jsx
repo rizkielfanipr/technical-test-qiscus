@@ -1,16 +1,22 @@
-import { useState } from 'react';
+import { useState, useCallback } from 'react';
 import PropTypes from 'prop-types';
 import { FaPaperPlane, FaSmile, FaPaperclip } from 'react-icons/fa'; // Import emoticon and attachment icons
 
-const MessageInput = ({ onSendMessage }) => {
+const ChatInput = ({ onSendMessage }) => {
   const [message, setMessage] = useState('');
 
-  const handleSend = () => {
+  // Handle message change
+  const handleMessageChange = useCallback((e) => {
+    setMessage(e.target.value);
+  }, []);
+
+  // Handle send message
+  const handleSend = useCallback(() => {
     if (message.trim()) {
       onSendMessage(message);
       setMessage(''); // Reset input after sending
     }
-  };
+  }, [message, onSendMessage]);
 
   return (
     <div className="fixed bottom-0 left-0 w-full p-4 bg-white border-t border-gray-300 shadow-lg rounded-t-xl">
@@ -30,7 +36,7 @@ const MessageInput = ({ onSendMessage }) => {
           {/* Text Area */}
           <textarea
             value={message}
-            onChange={(e) => setMessage(e.target.value)}
+            onChange={handleMessageChange}
             placeholder="Type your message here"
             className="textarea textarea-bordered w-full h-10 pl-4 pr-12 bg-gray-100 resize-none"
           />
@@ -48,8 +54,8 @@ const MessageInput = ({ onSendMessage }) => {
   );
 };
 
-MessageInput.propTypes = {
+ChatInput.propTypes = {
   onSendMessage: PropTypes.func.isRequired,
 };
 
-export default MessageInput;
+export default ChatInput;

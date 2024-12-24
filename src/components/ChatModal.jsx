@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 
-const Modal = ({ isModalOpen, participants, closeModal }) => {
+const ChatModal = ({ isModalOpen, participants, closeModal }) => {
   if (!isModalOpen) return null;
 
   return (
@@ -39,7 +39,7 @@ const Modal = ({ isModalOpen, participants, closeModal }) => {
   );
 };
 
-Modal.propTypes = {
+ChatModal.propTypes = {
   isModalOpen: PropTypes.bool.isRequired,
   participants: PropTypes.arrayOf(
     PropTypes.shape({
@@ -51,4 +51,4 @@ Modal.propTypes = {
   closeModal: PropTypes.func.isRequired,
 };
 
-export default Modal;
+export default ChatModal;
