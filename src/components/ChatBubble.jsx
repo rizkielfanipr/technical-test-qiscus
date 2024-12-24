@@ -55,7 +55,7 @@ const ChatBubble = ({ message, sender }) => {
       <div
         className={`chat-bubble ${
           sender === 'agent@mail.com' ? 'bg-blue-500 text-white shadow-md' : 'bg-white text-black shadow-md'
-        } mt-1 mb-1 sm:mt-2 sm:mb-24`}
+        } mt-1 mb-20 sm:mt-2 sm:mb-2`}
       >
         {renderMessageContent(message)}
       </div>
